@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script defer src="./index.js"></script>
+  </head>
+  <style>
+    .item {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(208, 134, 149);
+    
+}
+
+.wrapper {
+    background-color: rgb(127, 215, 170);
+    /* display: flex;
+    flex-wrap: wrap;*/
+    /* max-width: 600px; */
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+    gap: 20px;
+}
+
+.--active {
+    background-color: rgb(92, 92, 92);
+}
+
+.flex {
+     display: flex;
+    gap: 10px;
+}
+
+  </style>
+  <body>
+    <div class="wrapper">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="timer" id="timer">60</div>
+    <button onclick="startTimer()">Start Timer</button>
+    <div id="score">Score: 0</div>
+
+  </body>
+  <script>
+    let items = document.querySelectorAll(".item")
+    let score = 0;
+
+items.forEach((element) => {
+  element.onclick = () => {
+    element.classList.remove("--active");
+    score += 1;
+    document.getElementById("score").innerText = "Score: " + score;
+  };
+})
+function random(min,max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+const game = setInterval(() => {
+  let randNum = random(0, 9);
+  items.forEach((element) => {
+          element.classList.remove("--active");
+        });
+        items[randNum].classList.add("--active");
+      }, 1000);
+
+
+      let timerDisplay = document.getElementById("timer");
+      let timer;
+
+      function startTimer() {
+        let timeLeft = 60;
+        timer = setInterval(() => {
+          if (timeLeft <= 0) {
+            clearInterval(timer);
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
+  
+
+
+
+<!-- 
+//timer
+// let hours = document.getElementById("hours");
+//     let minutes = document.getElementById("minutes");
+//     let seconds = document.getElementById("seconds");
+    
+//     let sec = 59;
+//     let min = 4;
+//     let hour = 1;
+
+
+//     function func() {    
+//     let val = Number(this.innerHTML);
+//     val+=1;
+//     this.innerHTML = val;
+// }
+
+// let t = document.getElementById('timer');
+// t.addEventListener('mousedown', func); -->
+
